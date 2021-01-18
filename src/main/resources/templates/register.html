@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>S'inscrire</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
+    <link href="css/addons-pro/steppers.css" rel="stylesheet">
+    <!-- Stepper CSS - minified-->
+    <link href="css/addons-pro/steppers.min.css" rel="stylesheet">
+
+    <!-- Stepper JavaScript -->
+    <script type="text/javascript" src="js/addons-pro/steppers.js"></script>
+    <!-- Stepper JavaScript - minified -->
+    <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/login.css'>
+    <style>
+        p,h1,h2,h3,h4,h5,h6,div,span,td,tr{
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1> <img src="img/farmer.png" id="farmer"> E-SOUK</h1>
+    <div class="container my-4 py-4" style="width: 700px">
+        <section class="px-md-4 mx-md-4 text-center text-lg-left dark-grey-text">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <form class="text-center" th:action="@{/register}" th:object="${userForm}"  method="post">
+                        <p th:if="${error!=null}" th:text="${error}"></p>
+                        <p class="h4 mb-4" style="font-family: 'Nunito', sans-serif">Inscription</p>
+                        <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username" th:field="*{username}" required>
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+                        <input type="password" id="defaultLoginFormPassword1" class="form-control mb-4" placeholder="Password"  th:field="*{password}" required>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                        <input type="password"  class="form-control mb-4" placeholder="Password" name="password" required th:field="*{repassword}">
+                        <p th:if="${#fields.hasErrors('repassword')}" th:errors="*{repassword}"></p>
+                        <input type="text"  class="form-control mb-4" placeholder="Nom" th:field=" *{nom}" required>
+                        <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></p>
+                        <input type="text"  class="form-control mb-4" placeholder="prenom" th:field=" *{prenom}" required>
+                        <p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></p>
+                        <input type="number"  class="form-control mb-4" placeholder="telephone" th:field=" *{telephone}" required>
+                        <p th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></p>
+                        <input type="text"  class="form-control mb-4" placeholder="Adresse" th:field=" *{adresse}" required>
+                        <p th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"></p>
+
+
+                        <input class="btn btn-info btn-block my-4" type="submit" value="INSCRIRE">
+
+
+                    </form>
+                    <!-- Default form login -->
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+
+        </section>
+        <!--Section: Content-->
+
+
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="application/javascript" src="../js/jquery-3.4.1.min.js" ></script>
+<script type="application/javascript" src="../js/forms-free.min.js" ></script>
+</body>
+</html>

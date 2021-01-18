@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finaliser la commande</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <link href="../css/commander.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Oswald:wght@500&family=Overlock:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar white">
+    <div class="container">
+        <!-- SideNav slide-out button -->
+        <div class="float-left mr-2">
+            <a href="#" data-activates="slide-out" class="button-collapse">
+                <i class="fas fa-bars green-text"></i>
+            </a>
+        </div>
+        <a class="navbar-brand font-weight-bold" href="#">
+            <strong>E-Souk</strong>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <img th:src="@{'../img/'+ ${client.photo} +'.jpg'}" style="width: 24px;height: 24px;border-radius: 100%;"/>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" href="#" th:text="${client.nom+' '+client.prenom}">
+
+                    </a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" th:href="@{../userHome/user}">
+                        <i class="fas fa-home green-text"></i></a>
+                </li>
+                <li class="nav-item dropdown ml-3">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light dark-grey-text font-weight-bold" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user green-text"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item waves-effect waves-light" href="#">Mise a jour du profil</a>
+                        <a class="dropdown-item waves-effect waves-light" th:href="@{/logout}">se deconnecter</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1 class="container" style="margin-top: 110px;margin-bottom: 15px;">Les Commandes</h1>
+<div class="container z-depth-1"  style="background: white;">
+
+    <!-- Section: Block Content -->
+    <section>
+
+        <!-- Shopping Cart table -->
+        <div class="table-responsive">
+            <div>
+            <table class="table product-table table-cart-v-1 table-stripped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th class="font-weight-bold">
+                        <strong>Produit</strong>
+                    </th>
+                    <th></th>
+                    <th class="font-weight-bold">
+                        <strong>Prix</strong>
+                    </th>
+                    <th class="font-weight-bold">
+                        <strong>Qte</strong>
+                    </th>
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="panier:${panier.getItems()}">
+                    <th scope="row">
+                        <img th:src="@{'../img/'+ ${panier.getProduitmettre().produit.photo} +'.jpg'}" alt=""
+                             class="img-fluid z-depth-0" style="width: 100px;">
+                    </th>
+                    <td>
+                        <h5 class="mt-3">
+                            <strong th:text="${panier.getProduitmettre().nom}"></strong>
+                        </h5>
+                        <p class="text-muted" th:text="${'Type : '+panier.getProduitmettre().produit.designation}"></p>
+                    </td>
+                    <td></td>
+                    <td th:text="${panier.prix +' Dh'}"></td>
+                    <td class="text-center text-md-left" th:text="${panier.quantite}">
+
+                    </td>
+                    <td class="font-weight-bold">
+                        <strong th:text="${panier.prix*panier.quantite}"></strong>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top"
+                                title="Remove item">X
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td>
+                        <h4 class="mt-2">
+                            <strong>Total </strong>
+                        </h4>
+                    </td>
+                    <td class="text-right">
+                        <h4 class="mt-2">
+                            <strong th:text="${panier.getTotalSQ()}+' DH'"></strong>
+                        </h4>
+                    </td>
+                    <td colspan="3" class="text-right">
+                        <a  class="btn btn-purple btn-rounded px-4" th:href="@{validerCommande}">Completer l'operation
+                            <i class="fas fa-angle-right right"></i>
+                        </a>
+                    </td>
+                </tr>
+                <!-- Fourth row -->
+                </tbody>
+                <!-- Table body -->
+            </table>
+            </div>
+        </div>
+        <!-- Shopping Cart table -->
+
+    </section>
+    <!-- Section: Block Content -->
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="application/javascript" src="../js/jquery-3.4.1.min.js" ></script>
+</body>
+</html>

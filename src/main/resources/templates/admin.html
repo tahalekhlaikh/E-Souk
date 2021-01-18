@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../css/mdb.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
+    <link href="css/addons-pro/steppers.css" rel="stylesheet">
+    <!-- Stepper CSS - minified-->
+    <link href="css/addons-pro/steppers.min.css" rel="stylesheet">
+
+    <!-- Stepper JavaScript -->
+    <script type="text/javascript" src="js/addons-pro/steppers.js"></script>
+    <!-- Stepper JavaScript - minified -->
+    <script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/admin.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Oswald:wght@500&family=Overlock:wght@700&display=swap" rel="stylesheet">
+    <style>
+        p,h1,h2,h3,h4,h5,h6,div,span,td,li,a{
+            font-family: 'Nunito', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark green">
+
+    <div class="container">
+
+        <a class="navbar-brand py-0" href="#">E-Souk</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-normal" th:href="@{/admin}">Acceuil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/addAgriculteur}">Ajouter un agriculteur</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Voir les produits</a>
+                </li>
+
+            </ul>
+            <!-- Links -->
+
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false"><i class="fas fa-wrench"></i><span class="d-none d-xl-inline-block ml-1">Parametres</span></a>
+                    <div class="dropdown-menu dropdown-primary dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" th:href="@{/logout}">Se deconnecter</a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- Collapsible content -->
+
+    </div>
+
+</nav>
+<div class="container-fluid my-5 py-5">
+    <h1 style="font-family: 'Nunito', sans-serif;margin-bottom: 20px;text-align: center;">Les statistiques</h1>
+
+    <!-- Section: Block Content -->
+    <section>
+
+        <style>
+            .footer-hover {
+                background-color: rgba(0, 0, 0, 0.1);
+                -webkit-transition: all .3s ease-in-out;
+                transition: all .3s ease-in-out
+            }
+
+            .footer-hover:hover {
+                background-color: rgba(0, 0, 0, 0.2)
+            }
+
+            .text-black-40 {
+                color: rgba(0, 0, 0, 0.4)
+            }
+        </style>
+        <!-- Grid row -->
+        <div class="row">
+
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <!-- Card -->
+                <div class="card primary-color white-text">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="h2-responsive font-weight-bold mt-n2 mb-0" th:text="${nombreDeCommandes}"></p>
+                            <p class="mb-0">Nombre de commande</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-shopping-bag fa-4x text-black-40"></i>
+                        </div>
+                    </div>
+                    <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+                </div>
+                <!-- Card -->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <!-- Card -->
+                <div class="card warning-color white-text">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="h2-responsive font-weight-bold mt-n2 mb-0" th:text="${(nombreDeLigneCommande*100/(nombreDeProduitmettre))+' %'}"></p>
+                            <p class="mb-0">Pourcentage de vente</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-chart-bar fa-4x text-black-40"></i>
+                        </div>
+                    </div>
+                    <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+                </div>
+                <!-- Card -->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <!-- Card -->
+                <div class="card light-blue lighten-1 white-text">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="h2-responsive font-weight-bold mt-n2 mb-0" th:text="${nombreDeClient}"></p>
+                            <p class="mb-0">Nombre des clients</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-user-plus fa-4x text-black-40"></i>
+                        </div>
+                    </div>
+                    <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+                </div>
+                <!-- Card -->
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-3 mb-4">
+
+                <!-- Card -->
+                <div class="card red accent-2 white-text">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="h2-responsive font-weight-bold mt-n2 mb-0" th:text="${nombreDeProduitmettre}"></p>
+                            <p class="mb-0">Nombre de produitMettre</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-chart-pie fa-4x text-black-40"></i>
+                        </div>
+                    </div>
+                    <a class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i class="fas fa-arrow-circle-right pl-2"></i></a>
+                </div>
+                <!-- Card -->
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </section>
+    <!-- Section: Block Content -->
+
+</div>
+<h1 style="font-family: 'Nunito', sans-serif;margin-bottom: 20px;text-align: center;">Les agriculteurs</h1>
+<div>
+    <div class="container my-5">
+
+        <!-- Section: Block Content -->
+        <section class="team-section">
+
+            <div class="card">
+                <div class="card-header white d-flex justify-content-between">
+                    <p class="h5-responsive font-weight-bold mb-0">Agriculteurs</p>
+                    <ul class="list-unstyled d-flex align-items-center mb-0">
+                        <li><span class="badge badge-danger" th:text="${nombreAgriculteur}+' agriculteurs'"></span></li>
+
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="row pt-4">
+                        <div class="col-lg-3 col-md-4 col-sm-6 pb-4" th:each="agriculteur:${agriculteurs}">
+                            <div class="avatar white text-center">
+                                <img th:src="@{'/img/'+ ${agriculteur.photo} +'.jpg'}" class="img-fluid rounded-circle z-depth-1"/>
+                            </div>
+                            <div class="text-center mt-2">
+                                <h6 class="font-weight-bold pt-2 mb-0" th:text="${agriculteur.prenom}+' '+${agriculteur.nom}"></h6>
+                                <!--<p class="text-muted mb-0"><small>Today</small></p>-->
+                                <a class="btn btn-success" th:href="@{profil/{id}(id=${agriculteur.idAgriculteur})}">Voir son profil</a>
+                                <a class="btn btn-danger" th:href="@{bannir/{id}(id=${agriculteur.idAgriculteur})}">Bannir</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer white text-center py-3">
+
+                </div>
+            </div>
+
+        </section>
+        <!-- Section: Block Content -->
+
+    </div>
+</div>
+<div class="container my-5">
+    <h1 class="text-center" style="font-family: 'Nunito', sans-serif;margin-bottom: 50px;">Les produits les plus vendus</h1>
+    <!-- Section: Block Content -->
+    <section>
+
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="text-center font-weight-bold mb-4">Les 10 produits les plus vendus</h5>
+
+                <hr>
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-12 mb-3 mx-auto">
+                        <div th:each="produit:${produitmettre}">
+                        <div class="media">
+                            <img class="d-flex mr-3"   th:src="@{'/img/'+ ${produit.produit.photo} +'.jpg'}" alt="Generic placeholder image" style="width: 100px;">
+                            <div class="media-body">
+                                <h6 class="mt-1 font-weight-bold"><a href="#!" th:text="${produit.nom}"></a><a><span class="badge badge-warning float-right" th:text="${produit.nombreVendu}" style="width: 50px;height:29px;font-size: 15px;"></span></a></h6>
+                                <p class="text-muted" th:text="'Agriculteur : '+${produit.agriculteur.prenom}+' '+${produit.agriculteur.nom}"></p>
+                            </div>
+                        </div>
+                        <hr>
+                        </div>
+
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <!-- Section: Block Content -->
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="application/javascript" src="../js/jquery-3.4.1.min.js" ></script>
+</body>
+</html>

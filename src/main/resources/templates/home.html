@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>E-Souk</title>
+
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>E-souk</title>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="../css/mdb.min.css" rel="stylesheet">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel='stylesheet' type='text/css' media='screen' href='../css/home.css'>
+	<link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+	 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://wagtrung.github.io/store/themify-icons/themify-icons.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Oswald:wght@500&family=Overlock:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="container-fluid" id="container">
+	<nav class="navbar fixed-top navbar-expand-lg  navbar-light scrolling-navbar white">
+		<div class="container">
+			<!-- SideNav slide-out button -->
+			<div class="float-left mr-2">
+				<a href="#" data-activates="slide-out" class="button-collapse">
+					<i class="fas fa-bars green-text"></i>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<img th:src="@{'../img/'+ ${client.photo} +'.jpg'}" style="width: 24px;height: 24px;border-radius: 100%;"/>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" href="#" th:text="${client.nom+' '+client.prenom}">
+
+						</a>
+					</li>
+					<li class="nav-item ml-3">
+						<a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" th:href="@{../userHome/user}">
+							<i class="fas fa-home green-text"></i></a>
+					</li>
+					<li class="nav-item dropdown ml-3">
+						<a class="nav-link dropdown-toggle waves-effect waves-light dark-grey-text font-weight-bold" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+						   aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-user green-text"></i></a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+							<a class="dropdown-item waves-effect waves-light" th:href="@{commandes}">Voir les commandes</a>
+							<a class="dropdown-item waves-effect waves-light" th:href="@{/logout}">se deconnecter</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a href="#!" class="nav-link waves-effect" data-toggle="modal" data-target="#modalCart">
+							<span class="badge red z-depth-1 mr-1" th:text="${panier.getSize()}"> </span>
+							<i id="navbar-static-cart" alt="Cart" class="fas fa-shopping-cart green-text"></i>
+							<span class="sr-only"> Cart </span></a>
+						</li>
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+		<div class="container-fluid row" style="margin-top:50px;">
+		<!--	<ul  class="stepper stepper-horizontal col-lg-6 col-sm-12">
+
+				<li class="step active">
+					<a href="#!">
+						<span class="circle">1</span>
+						<span class="label">Remplir Panier</span>
+					</a>
+				</li>
+				<li class="step">
+					<a href="#!">
+						<span class="circle">2</span>
+						<span class="label">Payer</span>
+					</a>
+				</li>
+				<li class="step">
+					<a href="#!">
+						<span class="circle"><i class="fas fa-exclamation"></i></span>
+						<span class="label">Commander</span>
+					</a>
+				</li>
+
+			</ul>-->
+		</div>
+	<form class="container-fluid"  method="post" th:action="@{chercher}" style="margin-bottom: 70px;">
+		<div class="row">
+			<h1 style="font-size: 68px;margin-left: 20px;"><strong class="text-success">E</strong>-Souk</h1>
+		<input type="text" class="form-control col-lg-6 col-s-12" placeholder="chercher par agriculteur" name="recherche" style="margin-top: 85px;margin-left: 40px;" id="input" th:value="${recherche}">
+		<button type="submit" class="col-lg-1 btn btn-success" style="margin-top: 85px;margin-left: 20px;"><i class="fas fa-search white-text" style="width: 55px;"></i></button>
+		</div>
+	</form>
+
+
+	 </div>
+
+
+		
+	</div>
+
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<nav class="category col-lg-2 col-md-2 col-s-12" >
+			<div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true" >
+				<div class="card" id="cardCategory">
+					<div class="card-header" role="tab" id="headingTwo1" style="background-color:white;">
+						<a  data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+						   aria-expanded="true" aria-controls="collapseTwo1">
+							<h3 class="mb-0 text-success">
+								<i class="fas fa-apple-alt green-text"></i> Fruit  <i class="fas fa-angle-down rotate-icon green-text"></i>
+							</h3>
+						</a>
+					</div>
+					<div id="collapseTwo1" class="collapse" role="tabpanel" aria-labelledby="headingTwo1"
+						 data-parent="#accordionEx1" style="background-color:white;">
+						<div class="card-body">
+							<ul class="list-group" th:each="fruit:${fruits}">
+								<li class="list-group-item row" id="listFood">
+									<div class="md-v-line"></div>  <img th:src="@{'../img/'+ ${fruit.photo} +'.jpg'}"   class="img-fluid col-lg-4"   alt="Responsive image" id="imageProduct">
+									<a th:text="${fruit.designation}" class="text-dark text-decoration-none " style="font-size:15px;" th:href="@{./{category}(category=${fruit.designation})}"></a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="card" >
+					<div class="card-header" role="tab" id="headingTwo2" style="background-color:white;">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo21"
+						   aria-expanded="false" aria-controls="collapseTwo21">
+							<h3 class="mb-0 text-success"> <i class="fas fa-carrot green-text"></i>
+								Legume <i class="fas fa-angle-down rotate-icon"></i>
+							</h3>
+						</a>
+					</div>
+
+					<!-- Card body -->
+					<div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21"
+						 data-parent="#accordionEx1" style="background-color:white;">
+						<div class="card-body">
+							<ul class="list-group" th:each="legume:${legumes}">
+								<li class="list-group-item row">
+									<div class="md-v-line"></div>  <img th:src="@{'../img/'+ ${legume.photo} +'.jpg'}"   class="img-fluid col-lg-4"   alt="Responsive image" id="imageProduct">
+									<a th:text="${legume.designation}" class="text-dark text-decoration-none " style="font-size:15px;" th:href="@{./{category}(category=${legume.designation})}"></a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="card" >
+					<div class="card-header" role="tab" id="headingTwo3" style="background-color:white;">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo22"
+						   aria-expanded="false" aria-controls="collapseTwo21">
+							<h3 class="mb-0 text-success"><i class="fas fa-blender green-text"></i></i>
+								Laitier <i class="fas fa-angle-down rotate-icon"></i>
+							</h3>
+						</a>
+					</div>
+
+					<!-- Card body -->
+					<div id="collapseTwo22" class="collapse" role="tabpanel" aria-labelledby="headingTwo3"
+						 data-parent="#accordionEx1" style="background-color:white;">
+						<div class="card-body">
+							<ul class="list-group" th:each="laitier:${laitier}">
+								<li class="list-group-item row">
+									<div class="md-v-line"></div>  <img th:src="@{'../img/'+ ${laitier.photo} +'.jpg'}"   class="img-fluid col-lg-4"   alt="Responsive image" id="imageProduct">
+									<a th:text="${laitier.designation}" class="text-dark text-decoration-none " style="font-size:15px;" th:href="@{./{category}(category=${laitier.designation})}"></a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<!-- Accordion card -->
+
+			</div>
+			<!-- Accordion wrapper -->
+
+
+
+
+		</nav>
+
+		<div class="container col-lg-9 col-md-9 col-s-12" >
+			<p th:if="${erreurPanier!=''}" th:text="${erreurPanier}" class="text-danger text-center"></p>
+			<div class="row" id="rowProduct">
+				<h1 th:if="${produitMettre.isEmpty()}" class="text-center" style="justify-content: center;">Aucun résultat trouvé </h1>
+				<div class="cardProduit" th:each="produit:${produitMettre}" id="cardProduit"  style="margin-bottom: 145px;">
+
+					<div class="card-wrapper"  id="card" >
+						<div  id="card-1" class="card card-rotating text-center">
+							<div class="face front">
+								<div class="card-up">
+									<img class="card-img-top" th:src="@{'/img/'+ ${produit.produit.photo} +'.jpg'}"  alt="produit">
+								</div>
+								<hr>
+							</div>
+
+							<div class="card-body card-body-cascade">
+								<h3 class="card-title" th:text="${produit.produit.designation}" style="font-family:'Covered By Your Grace';font-size: 16px;" id="textProduits"></h3>
+
+
+								<h3 class="card-text"  style="font-size:12px;" th:text="${produit.description}"></h3>
+								<h3 class="card-text"  style="font-size:12px;" th:text="'Agriculteur : '+${produit.agriculteur.prenom}+' '+${produit.agriculteur.nom}"></h3>
+
+
+								<div class="card-footer px-1" id="card-footer">
+									<strong><span class="float-left text-success" th:text="${produit.prix}+' DH'" style="font-size:14px;"></span></strong>
+									<span class="float-right">
+											<a class="material-tooltip-main text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Voir" th:href="@{../produitDetail/{id}(id=${produit.idProduitMettre})}">
+											  <i class="fas fa-eye ml-3 green-text"></i>
+											</a>
+											<a class="material-tooltip-main text-succes" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wishlist" th:href="@{ajouterPanier/{id}(id=${produit.idProduitMettre})}">
+											  <i class="fas fa-shopping-cart ml-3 green-text"></i>
+											</a>
+										<img class="img-fluid" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agriculteur" th:src="@{'/img/'+ ${produit.agriculteur.photo} +'.jpg'}" style="width: 20px; border-radius: 100%; margin-left: 8px;"/>
+
+										  </span>
+
+
+
+
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</div>
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!--Header-->
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">Mon panier</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<!--Body-->
+			<div class="modal-body">
+
+				<table class="table table-hover">
+					<thead>
+					<tr>
+						<th>#</th>
+						<th>Nom du produit</th>
+						<th>Prix</th>
+						<th>Supprimer</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="produitPanier :${panier.getItems()}">
+						<th scope="row">1</th>
+						<td th:text="${produitPanier.produitmettre.nom}"></td>
+						<td th:text="${produitPanier.prix}"></td>
+						<td><a th:href="@{supprimer/{id}(id=${produitPanier.getProduitmettre().id})}"><i class="fas fa-times"></i></a></td>
+					</tr>
+					<tr class="total">
+						<th scope="row" th:text="${panier.getSize()}"></th>
+						<td>Total</td>
+						<td th:text="${panier.getTotalSQ()}"></td>
+						<td></td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<!--Footer-->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-primary" data-dismiss="modal">Fermer</button>
+				<a class="btn btn-success" th:href="@{./commander}">Commander</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="application/javascript">
+	AOS.init();
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="application/javascript" src="../js/jquery-3.4.1.min.js" ></script>
+<script type="application/javascript" src="../js/home.js" ></script>
+
+</body>
+</html>

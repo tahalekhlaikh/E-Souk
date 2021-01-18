@@ -1,0 +1,11 @@
+input
+{
+    margin-top: 9px;
+}
+button[type="submit"]
+{
+    justify-content: center;
+}
+body{
+    background: #f5f5f5;
+}

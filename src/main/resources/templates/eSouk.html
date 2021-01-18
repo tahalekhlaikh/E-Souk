@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>E-souk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/mdb.min.css" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='css/eSouk.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/animate.css'>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/flaticon.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <script>
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 3000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.visibility = "hidden";
+            document.getElementById("body").style.visibility = "visible";}
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+<!--
+<div  id="loader" style="visibility: visible; background: rgb(242, 242, 242);"> <img src="img/loader.gif" alt="#"></div>-->
+<div class="overflow" id="body">
+<div class="container-fluid view1">
+    <div class="container-fluid">
+        <div class="row">
+            <h1 class="text-center" style="color:white;">
+                <img src="img/farmer.png" id="farmer">E-souk
+            </h1>
+            <ul class="col-md-6 col-lg-6 col-s-12 nav1 ml-auto">
+                
+                <li><a class="btn"><i class="fas fa-exclamation-circle"></i>Info</a></li>
+                <li><a class="btn" th:href="@{/login}"><i class="fas fa-rocket"></i>Se Connecter /<i class="fas fa-address-book"></i>S'inscrire</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="bodyView container">
+        <h1 class="text-center" id="titre">Premiere Plateforme Marocaine des Agriculteurs</h1>
+        <h4 id="introduction">E-Souk est un site qui permet aux agriculteurs de creer leurs propres boutiques afin que les client achetent leus marchandises</h4>
+        <div class="row" id="home">
+            <div class="col-lg-6 col-md-6 " id="imgHome">
+                <img src="img/homeImg1.png" id="homeImg1" data-aos="zoom-in-up"  data-aos-offset="200"
+                     data-aos-delay="1000"
+                     data-aos-duration="1000"
+                     data-aos-easing="ease-in-out"
+                     data-aos-mirror="true"
+                     data-aos-once="false">
+            </div>
+            <div class="col-lg-6 col-md-6 colonne2 " data-aos="zoom-in-left">
+                <ul>
+                    <li><h5><li class="fas fa-shield-alt icon"></li>Site Sécurisé et Fiable</h5></li>
+                    <li><h5><li class="fas fa-user-friends icon"></li>Très populaire</h5></li>
+                    <li><h5><li class="fas fa-route icon"></li>Livraison Rapide</h5></li>
+                    <li><h5><li class="fas fa-envelope icon"></li>Systeme de messagerie</h5></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-5 " data-aos="flip-left" data-aos-duration="3000" id="container">
+        <div class="balloon white">
+            <div class="star-red"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
+
+        <div class="balloon red">
+            <div class="star"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
+
+        <div class="balloon blue">
+            <div class="star"></div>
+            <div class="face">
+                <div class="eye"></div>
+                <div class="mouth happy"></div>
+            </div>
+            <div class="triangle"></div>
+            <div class="string"></div>
+        </div>
+        <div id="timer"></div>
+        <h2> <img src="img/clock.png"> On vous attend </h2>
+    </div>
+    <div class="col-lg-7 col-s-12 overflow-auto ">
+        <h1 class="text-center" style="margin-bottom: 25px;"> <img src="img/caregorie.png"   /> CATEGORIES</h1>
+        <div class="row">
+            <div th:each="categorie:${categories}"
+                 data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+                <img th:src="@{'/img/'+ ${categorie.photo} +'.jpg'}" class="col-lg-4 img-fluid" style="margin-left: 5px;width: 200px;">
+                <h3 class="text-center" th:text="${categorie.nom}"></h3>
+            </div>
+        </div>
+
+    </div>
+        </div>
+  <hr>
+     <div class="body"> 
+        <div class="container-fluid padding">
+          
+            <h1 class="text-center text-dark "> <img src="img/food.png" > Nos Produits</h1>
+           <!-- <nav class="navbar navbar-white bg-white search2 ">
+              <form class="form-inline md-form" th:action="@{../searchProduit}"
+         th:object="${produit}" method="POST">
+                <input class="form-control mr-sm-2"  type="search" placeholder="Search" aria-label="Search" th:field="*{designation}" style="background-color:white;">
+
+                <input class="btn btn-success my-2 my-sm-0" id="serach2" type="submit">
+              </form>
+            </nav>-->
+          </div>
+          <div class="row padding container-fluid" style="margin-right:auto;margin-left:auto;">
+
+            <div class="col-md-2 cardProduit" data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000"  th:each="produits:${produits}">
+              <div class="card card-cascade wider">
+                  <div class="view view-cascade overlay zoom">
+
+                <img class="card-img-top " th:src="@{'/img/'+ ${produits.photo} +'.jpg'}">
+                      <a>
+                          <div class="mask rgba-white-slight"></div>
+                      </a>
+                  </div>
+                <div class="card-body card-body-cascade">
+                    <i class="fas fa-utensils" style="color:pink;"></i><span class="pink-text" th:text="${produits.categorie.nom}"></span>
+                  <h4 class="font-weight-bold card-title" th:text="${produits.designation}" style="font-family:'Covered By Your Grace';font-size:30px;"></h4>
+                  <p class="card-text">Nos légumes sont 100% et proviennent des meilleurs agriculteurs de tout le royaume!</p>
+                   <p class="card-text text-dark" >Prix :   <span th:text="${produits.prix}" id="prix" class="text-center"></span> (DH) </p>
+                  <a href="home/userHome" class="btn text-white" style="background-color: #82AE47;">Voir les produits</a>
+                </div>
+              </div>
+            </div>
+           
+        </div>
+     </div>
+     <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify">E-souk est un site e-commerce qui permet de creer une boutique pour un agriculteur afin de poser sa marchandise sur un souk virtuel</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+              <li><a href="">Fruits</a></li>
+              <li><a href="">Legumes</a></li>
+              <li><a href="">Autres</a></li>
+              
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>les liens</h6>
+            <ul class="footer-links">
+              <li><a href="">About Us</a></li>
+              <li><a href="">Contact Us</a></li>
+             
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+         <a href="#">E-Souk</a>.
+            </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="far fa-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="far fa-twitter"></i></a></li>
+
+              <li><a class="linkedin" href="#"><i class="far fa-linkedin"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+</footer>
+      </div>
+     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/time.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+
+</html>
